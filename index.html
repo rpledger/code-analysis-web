@@ -182,24 +182,29 @@
          *    const sortPeopleByName = sortObjListByProp('name');
          *    const sortedPeople = sortPeopleByName(people);
          *
+         * Also takes in an optional tiebreaker property to break ties when prop is equal
+         *
          *  We now have:
          *
          *    console.log(sortedPeople)
          *    > [{ name: 'Jon' }, { name: 'Kevin' }, { name: 'Sam' }]
          *
          */
-        function sortObjListByProp(prop) {
+        function sortObjListByProp(prop, tiebreaker) {
             return function(objList) {
                 // Make a copy & don't mutate the passed in list
-                let result = objList.slice(1);
+                let result = objList.slice(0);
 
                 result.sort((a, b) => {
                     if (a[prop] < b[prop]) {
                         return -1;
-                    }
-
-                    if (a[prop] > b[prop]) {
+                    }else if (a[prop] > b[prop]) {
                         return 1;
+                    }else if(tiebreaker){
+                        if (a[tiebreaker] > b[tiebreaker]){
+                            return 1;
+                        }
+                        return -1;
                     }
 
                     return 1;
@@ -209,9 +214,9 @@
             };
         }
 
-        const sortByFirstName = sortObjListByProp('firstName');
+        const sortByFirstName = sortObjListByProp('firstName', 'lastName');
 
-        const sortByLastName = (personList) => sortByFirstName(personList).reverse();
+        const sortByLastName = sortObjListByProp('lastName', 'firstName');
 
 
         /*==================================================
