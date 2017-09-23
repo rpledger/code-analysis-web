@@ -146,15 +146,15 @@
          */
         function shuffleList(list) {
             // Make a copy & don't mutate the passed in list
-            let result = list.slice(1);
+            let result = list.slice(0);
 
             let tmp, j, i = list.length - 1
 
             for (; i > 0; i -= 1) {
                 j = Math.floor(Math.random() * (i + 1));
-                tmp = list[i];
-                list[i] = list[j];
-                list[j] = tmp;
+                tmp = result[i];
+                result[i] = result[j];
+                result[j] = tmp;
             }
 
             return result;
