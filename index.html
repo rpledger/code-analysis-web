@@ -164,10 +164,13 @@
         /**
          * Remove any people that do not have the name we are
          * searching for.
+         *
+         * Perform RegEx on Start of first name or last name
          */
         function filterByName(searchForName, personList) {
+            var regexp = new RegExp('^' + searchForName, 'i')
             return personList.filter((person) => {
-                return person.firstName === searchForName || person.lastName === searchForName;
+                return regexp.test(person.firstName) || regexp.test(person.lastName);
             });
         }
 
