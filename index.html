@@ -56,8 +56,8 @@
         }
 
         .app-container {
-            width: 400px;
-            margin: 0 auto 0 auto;
+            width: 50%;
+            margin: 20px auto 0 auto;
         }
 
         .image {
@@ -67,7 +67,10 @@
 
         .list-container {
             width: 100%;
-            border: 1px solid black;
+            margin-top: 20px;
+        }
+        .btn {
+            margin-left: 10px
         }
         </style>
     </head>
@@ -79,7 +82,7 @@
         <!-- 3rd Party Scripts -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.7/react.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.7/react-dom.js"></script>
-
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
         <!-- Our Application Logic -->
         <script>
@@ -233,7 +236,7 @@
             React.DOM.td({ key: 'last' }, null, getLastName(props.person)),
         ]);
 
-        const ListContainer = (props) => React.DOM.table({ className: 'list-container' }, [
+        const ListContainer = (props) => React.DOM.table({ className: 'list-container table' }, [
             React.DOM.thead({ key: 'thead' }, React.DOM.tr({}, [
                 React.DOM.th({ key: 'thumb-h' }, null, 'Thumbnail'),
                 React.DOM.th({ key: 'first-h' }, null, 'First Name'),
@@ -288,9 +291,9 @@
 
                 return React.DOM.div({ className: 'app-container' }, [
                     React.createElement(Search, { key: 'search', onChange: this._onSearch }),
-                    React.DOM.button({ key: 'shuffle', onClick: this._shuffleList }, null, 'Shuffle'),
-                    React.DOM.button({ key: 'sort-first', onClick: this._sortByFirst }, null, 'Sort (First Name)'),
-                    React.DOM.button({ key: 'sort-last', onClick: this._sortByLast }, null, 'Sort (Last Name)'),
+                    React.DOM.button({ key: 'shuffle', onClick: this._shuffleList , className: 'btn btn-default'}, null, 'Shuffle'),
+                    React.DOM.button({ key: 'sort-first', onClick: this._sortByFirst, className: 'btn btn-default' }, null, 'Sort (First Name)'),
+                    React.DOM.button({ key: 'sort-last', onClick: this._sortByLast, className: 'btn btn-default' }, null, 'Sort (Last Name)'),
                     React.createElement(ListContainer, { key: 'list', personList: visiblePersonList })
                 ]);
             }
